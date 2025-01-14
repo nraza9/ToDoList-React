@@ -38,17 +38,10 @@ export default function Flashcard({ flashcard, callback }) {
       });
   }
 
-
-  function doFlip(e) {
-    console.log('doFlip');
-    setFlip(!flip)
-  };
-
   return (
     <div
       className={`card ${flip ? 'flip' : ''}`}
       style={{ height: height }}
-      //onClick={doFlip}
       onClick={() => setFlip(!flip)}
     >
       <div className="front" ref={frontEl}
