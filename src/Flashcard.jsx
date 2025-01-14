@@ -7,7 +7,6 @@ export default function Flashcard({ flashcard, callback }) {
   const [flip, setFlip] = useState(false)
   const [height, setHeight] = useState('initial')
 
-
   const frontEl = useRef()
   const backEl = useRef()
 
@@ -17,10 +16,12 @@ export default function Flashcard({ flashcard, callback }) {
     setHeight(Math.max(frontHeight, backHeight, 100))
   }
 
+  //Set max height every time title updated
   useEffect(setMaxHeight, [flashcard.title])
+
+  //ToDo: Do we need this?
   useEffect(() => {
     window.addEventListener('resize', setMaxHeight)
-
     //Following line will run when component is removed from UI
     return () => window.removeEventListener('resize', setMaxHeight)
   }, [])
@@ -51,7 +52,5 @@ export default function Flashcard({ flashcard, callback }) {
       </div>
       <div className="back" ref={backEl}>{flashcard.id}</div>
     </div>
-
-
   )
 }

@@ -8,7 +8,7 @@ function App() {
   const [reload, setReload] = useState(false)
   const [taskName, setTaskName] = useState('')
 
-
+  //Handler to re-load the main component
   const handleMessage = () => {
     setReload(!reload)
   }
