@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import './App.css'
 import axios from 'axios'
+import EditableText from './EditableText'
 
 
 export default function Flashcard({ flashcard, callback }) {
@@ -27,6 +28,7 @@ export default function Flashcard({ flashcard, callback }) {
   }, [])
 
   const handleDelete = (e) => {
+    console.log('handleDelete')
     axios.delete(`http://127.0.0.1:8000/api/${e.target.id}/`)
       .then(response => {
         // Handle successful delete, e.g., update UI
@@ -46,8 +48,9 @@ export default function Flashcard({ flashcard, callback }) {
       onClick={() => setFlip(!flip)}
     >
       <div className="front" ref={frontEl}
-        style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px' }}>
-        <span>{flashcard.title}</span>
+        style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '5px' }}>
+        {/* <span id="Edit">{flashcard.title}</span> */}
+        <EditableText card={flashcard} />
         <button id={flashcard.id} onClick={handleDelete}>🗑️</button>
       </div>
       <div className="back" ref={backEl}>{flashcard.id}</div>
