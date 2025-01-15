@@ -8,13 +8,11 @@ export default function EditableText({ card }) {
     const prevText = useRef();
 
     useEffect(() => {
-        console.log('useEffect')
-        prevText.current = text; // Update the ref to the current count after every render
+        prevText.current = text; // save the current title text
     }, []);
 
     const handleEdit = (event) => {
         event.stopPropagation(); // Prevents the event from bubbling up to the parent
-        console.log('handleEdit')
         { event.target.id == "Edit" ? setIsEditable(true) : null }
         { event.target.id == "Save" ? setIsEditable(false) : null }
         { event.target.id == "Cancel" ? (setIsEditable(false), setText(prevText.current)) : null }
